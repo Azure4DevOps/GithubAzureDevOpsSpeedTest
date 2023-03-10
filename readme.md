@@ -14,7 +14,7 @@ $ npm run build
 ## Regions
 
 1. Run `npm run build`
-1. Run the site locally (I use [node-static](https://www.npmjs.com/package/http-server)) to test that the site works.
+1. Run the site locally (I use [http-server](https://www.npmjs.com/package/http-server)) to test that the site works.
 
 ## License 
 
