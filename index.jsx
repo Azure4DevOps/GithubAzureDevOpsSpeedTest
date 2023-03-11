@@ -27,6 +27,7 @@ const Table = class extends React.Component {
     super(props)
     this.renderButton = this.renderButton.bind(this)
     this.renderFlag = this.renderFlag.bind(this)
+    this.renderFlag2 = this.renderFlag2.bind(this)
     this.renderRow = this.renderRow.bind(this)
     this.renderError = this.renderError.bind(this)
   }
@@ -40,11 +41,11 @@ const Table = class extends React.Component {
     return (
       <a
         href={
-          'https://twitter.com/intent/tweet?button_hashtag=GitHubAzureDevOpsSpeedTest&text=My%20nearest%20%23Azure%20Data%20Center%20is%20' +
+          'https://twitter.com/intent/tweet?button_hashtag=GitHubAzureDevOpsSpeedTest&text=My%20nearest%20%23AzureDevOps%20%23GitHub%20is%20' +
           item.name +
           '%20(' +
           Math.round(item.average) +
-          'ms).%20Find%20out%20yours%20http%3A%2F%2Fazure4devops.com%20#GitHubAzureDevOpsSpeedTest'
+          'ms).+Find+out+yours+https%3A%2F%2Fazure4devops.com%2FGithubAzureDevOpsSpeedTest%2F+#GitHubAzureDevOpsSpeedTest'
         }
         className="btn btn-primary btn-large"
         data-size="large"
@@ -58,6 +59,10 @@ const Table = class extends React.Component {
   renderFlag(item) {
     if (!item.icon) return ''
     return <img src={item.icon} className="icon" itemType="image/svg" />
+  }
+  renderFlag2(item) {
+    if (!item.icon2) return ''
+    return <img src={item.icon2} className="icon" itemType="image/svg" />
   }
   renderRow(item) {
     const rowStyle = {
@@ -73,6 +78,7 @@ const Table = class extends React.Component {
       <tr key={item.name} style={rowStyle}>
         <td>
           {this.renderFlag(item)}
+          {this.renderFlag2(item)}
           {item.name}
         </td>
         <td>{Math.round(item.average)}ms</td>
@@ -98,6 +104,7 @@ const Table = class extends React.Component {
       <tr key={item.name}>
         <td>
           {this.renderFlag(item)}
+          {this.renderFlag2(item)}
           {item.name}
         </td>
         <td>
