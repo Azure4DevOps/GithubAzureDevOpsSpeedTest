@@ -11,7 +11,7 @@
   "author": "Janusz Nowak",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^15.3.0",
+    "react-dom": "^18.2.0",
     "react-sparklines": "^1.7.0"
   },
   "devDependencies": {
