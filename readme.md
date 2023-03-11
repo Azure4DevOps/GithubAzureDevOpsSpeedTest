@@ -2,6 +2,8 @@
 
 Measures the network latency between your browser and GitHub and each of the Azure DevOps region.
 
+https://azure4devops.com/GithubAzureDevOpsSpeedTest/
+
 ## Building the UI
 
 You can use these commands to build the User Interface:
