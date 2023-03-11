@@ -1,5 +1,5 @@
 {
-  "name": "AzureSpeedTest2.0",
+  "name": "GitHubAzureDevOpsSpeedTest",
   "version": "1.0.0",
   "main": "index.jsx",
   "scripts": {
@@ -8,7 +8,7 @@
     "lint": "eslint . --ext .js --ext .jsx",
     "browserify": "browserify -t babelify index.jsx  -g [ envify --NODE_ENV production ] -g uglifyify  | uglifyjs --compress warnings=false --mangle > index.min.js"
   },
-  "author": "Richard Astbury",
+  "author": "Janusz Nowak",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.3.0",
