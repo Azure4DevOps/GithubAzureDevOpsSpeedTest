@@ -1,6 +1,0 @@
-language: node_js
-script:
-  - npm install
-  - npm run build
-node_js:
-  - "node"
