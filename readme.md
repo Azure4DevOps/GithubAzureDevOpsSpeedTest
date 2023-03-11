@@ -31,6 +31,6 @@ $ npm run build
 1. Run `npm run build`
 1. Run the site locally (I use [http-server](https://www.npmjs.com/package/http-server)) to test that the site works.
 
-## License
+## Preview
+![image](https://user-images.githubusercontent.com/5168275/224496856-971ca7f5-9982-4cdb-b48b-61eb8540019b.png)
 
-MIT
