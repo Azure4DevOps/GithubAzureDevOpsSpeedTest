@@ -130,24 +130,16 @@ const Table = class extends React.Component {
         <p>
           Compare your speed with others by watching the{' '}
           <a href="https://twitter.com/search?q=%23AzureSpeedTest&src=hash&mode=realtime">
-            #AzureSpeedTest
+            #GitHubAzureDevOpsSpeedTest
           </a>{' '}
           hashtag.
         </p>
         <p>
-          <a href="https://github.com/richorama/AzureSpeedTest2">Fork</a> on
+          <a href="https://github.com/Azure4DevOps/GithubAzureDevOpsSpeedTest">Fork</a> on
           GitHub.
         </p>
         <p>
           Created by <a href="https://www.twitter.com/richorama/">@richorama</a>
-        </p>
-        <p>
-          Thanks to:
-          <ul>
-            <li><a href="https://github.com/ncareau">NMC</a> for the storage accounts in Canada.</li>
-            <li><a href="https://github.com/jurajsucik">Juraj Sucik</a> for the storage accounts in Switzerland and Germany North.</li>
-            <li><a href="https://github.com/brukarkooperativet-jag">Brukarkooperativet JAG</a> for the storage account in Sweden</li>
-          </ul>
         </p>
         <p>
           The{' '}
@@ -157,22 +149,11 @@ const Table = class extends React.Component {
             feature matrix
           </a>
           .
-        </p>
-        <p>
-          Can't see a data center you were expecting? See{' '}
-          <a href="https://github.com/richorama/AzureSpeedTest2/issues/12">
-            this issue
-          </a>{' '}
-          for more information.
-        </p>
-        <p>
-          To compare AWS regions, please see the{' '}
-          <a href="http://awsspeedtest.xvf.dk/">AWS Speed Test</a>.
-        </p>
+        </p>        
         <p>
           <small>
             The latency times are indicative only, and do not represent the
-            maxium performance achievable from Microsoft Azure. Use this website
+            maxium performance, achievable from GitHub and Azure DevOps. Use this website
             purely as a tool to gauge which Azure Data Center could be the best
             for your location.
           </small>
