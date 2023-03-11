@@ -32,5 +32,6 @@ $ npm run build
 1. Run the site locally (I use [http-server](https://www.npmjs.com/package/http-server)) to test that the site works.
 
 ## Preview
-![image](https://user-images.githubusercontent.com/5168275/224496856-971ca7f5-9982-4cdb-b48b-61eb8540019b.png)
+![image](https://user-images.githubusercontent.com/5168275/224501609-78351378-7f89-4d92-aad2-56902cf86a4c.png)
+
 
