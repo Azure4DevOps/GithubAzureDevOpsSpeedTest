@@ -40,11 +40,11 @@ const Table = class extends React.Component {
     return (
       <a
         href={
-          'https://twitter.com/intent/tweet?button_hashtag=AzureSpeedTest&text=My%20nearest%20%23Azure%20Data%20Center%20is%20' +
+          'https://twitter.com/intent/tweet?button_hashtag=GitHubAzureDevOpsSpeedTest&text=My%20nearest%20%23Azure%20Data%20Center%20is%20' +
           item.name +
           '%20(' +
           Math.round(item.average) +
-          'ms).%20Find%20out%20yours%20http%3A%2F%2Fazurespeedtest.azurewebsites.net%20#AzureSpeedTest'
+          'ms).%20Find%20out%20yours%20http%3A%2F%2Fazure4devops.com%20#GitHubAzureDevOpsSpeedTest'
         }
         className="btn btn-primary btn-large"
         data-size="large"
@@ -139,7 +139,11 @@ const Table = class extends React.Component {
           GitHub.
         </p>
         <p>
-          Created by <a href="https://www.twitter.com/richorama/">@richorama</a>
+          <a href="https://github.com/richorama/AzureSpeedTest2">Forked from and inspired from</a> on
+          GitHub.
+        </p>
+        <p>
+          Created by <a href="https://www.twitter.com/jnowwwak/">@jnowwwak</a>
         </p>
         <p>
           The{' '}
@@ -149,7 +153,7 @@ const Table = class extends React.Component {
             feature matrix
           </a>
           .
-        </p>        
+        </p>
         <p>
           <small>
             The latency times are indicative only, and do not represent the

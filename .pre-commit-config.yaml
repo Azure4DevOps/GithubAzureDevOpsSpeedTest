@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: check-xml
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+        args: ["--markdown-linebreak-ext=md"]
+      - id: requirements-txt-fixer
+      # - id: mixed-line-ending
+      #   args: ["--fix=crlf"]
+        # description: Forces to replace line ending by the 'crlf' character.
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 2.4.0
+    hooks:
+      - id: editorconfig-checker
