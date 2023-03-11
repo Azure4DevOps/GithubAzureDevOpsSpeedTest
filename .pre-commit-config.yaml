@@ -1,19 +1,29 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
-    hooks:
-      - id: check-json
-      - id: check-yaml
-      - id: check-xml
-      - id: check-executables-have-shebangs
-      - id: check-merge-conflict
-      - id: trailing-whitespace
-        args: ["--markdown-linebreak-ext=md"]
-      - id: requirements-txt-fixer
-      # - id: mixed-line-ending
-      #   args: ["--fix=crlf"]
-        # description: Forces to replace line ending by the 'crlf' character.
-  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 2.4.0
-    hooks:
-      - id: editorconfig-checker
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-json
+  - id: check-yaml
+  - id: check-xml
+  - id: check-executables-have-shebangs
+  - id: check-merge-conflict
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+  - id: requirements-txt-fixer
+  - id: mixed-line-ending
+    args: [--fix=lf]
+- repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+  rev: 2.7.1
+  hooks:
+  - id: editorconfig-checker
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.7.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix, --indent, '2']
+- repo: https://github.com/sirosen/check-jsonschema
+  rev: 0.22.0
+  hooks:
+  - id: check-github-workflows
+  - id: check-github-actions
+  - id: check-azure-pipelines

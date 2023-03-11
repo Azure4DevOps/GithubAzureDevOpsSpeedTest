@@ -12,10 +12,12 @@ https://azure4devops.com/GithubAzureDevOpsSpeedTest/
 You can use these commands to build the User Interface:
 
 ## Inspired
+
 Forked and inspired from https://github.com/richorama/AzureSpeedTest2
 needed to change to fetch instead of Ajax call because of no option to configure CORS
 
 ## Thoughts
+
 - Azure DevOps regions response time, at least for me are very similar to https://richorama.github.io/AzureSpeedTest2/ hitting the same Azure region plus few extra 1-5 ms
 - GitHub response time is better usually than Azure DevOps, but time can come maybe from better CDN setup, as GitHub from begging was designed to public open source projects
 

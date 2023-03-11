@@ -1,51 +1,51 @@
-const React = require('react')
-const ReactDom = require('react-dom')
-const speedtest = require('./lib/speed-test')
-const history = require('./lib/history')
-const sl = require('react-sparklines')
-const Sparklines = sl.Sparklines
-const SparklinesLine = sl.SparklinesCurve
+const React = require("react");
+const ReactDom = require("react-dom");
+const speedtest = require("./lib/speed-test");
+const history = require("./lib/history");
+const sl = require("react-sparklines");
+const Sparklines = sl.Sparklines;
+const SparklinesLine = sl.SparklinesCurve;
 
 // record history
-speedtest.on(history.record)
+speedtest.on(history.record);
 
 speedtest.on(() => {
-  const scrollPosition = window.scrollY
-  render(<Table history={history.read()} blockList={globalBlockList} />)
-  window.scrollY = scrollPosition
-})
+  const scrollPosition = window.scrollY;
+  render(<Table history={history.read()} blockList={globalBlockList} />);
+  window.scrollY = scrollPosition;
+});
 
-let globalBlockList = []
-speedtest.onBlocklistUpdate(blockList => (globalBlockList = blockList))
+let globalBlockList = [];
+speedtest.onBlocklistUpdate((blockList) => (globalBlockList = blockList));
 
 function render(jsx) {
-  ReactDom.render(jsx, document.getElementById('content'))
+  ReactDom.render(jsx, document.getElementById("content"));
 }
 
 const Table = class extends React.Component {
   constructor(props) {
-    super(props)
-    this.renderButton = this.renderButton.bind(this)
-    this.renderFlag = this.renderFlag.bind(this)
-    this.renderFlag2 = this.renderFlag2.bind(this)
-    this.renderRow = this.renderRow.bind(this)
-    this.renderError = this.renderError.bind(this)
+    super(props);
+    this.renderButton = this.renderButton.bind(this);
+    this.renderFlag = this.renderFlag.bind(this);
+    this.renderFlag2 = this.renderFlag2.bind(this);
+    this.renderRow = this.renderRow.bind(this);
+    this.renderError = this.renderError.bind(this);
   }
   renderButton() {
-    let item = this.props.history[0]
+    let item = this.props.history[0];
 
-    if (!item) return ''
-    if (item.cdn || false) item = this.props.history[1]
-    if (!item) return ''
+    if (!item) return "";
+    if (item.cdn || false) item = this.props.history[1];
+    if (!item) return "";
 
     return (
       <a
         href={
-          'https://twitter.com/intent/tweet?button_hashtag=GitHubAzureDevOpsSpeedTest&text=My%20nearest%20%23AzureDevOps%20%23GitHub%20is%20' +
+          "https://twitter.com/intent/tweet?button_hashtag=GitHubAzureDevOpsSpeedTest&text=My%20nearest%20%23AzureDevOps%20%23GitHub%20is%20" +
           item.name +
-          '%20(' +
+          "%20(" +
           Math.round(item.average) +
-          'ms).+Find+out+yours+https%3A%2F%2Fazure4devops.com%2FGithubAzureDevOpsSpeedTest%2F+#GitHubAzureDevOpsSpeedTest'
+          "ms).+Find+out+yours+https%3A%2F%2Fazure4devops.com%2FGithubAzureDevOpsSpeedTest%2F+#GitHubAzureDevOpsSpeedTest"
         }
         className="btn btn-primary btn-large"
         data-size="large"
@@ -54,25 +54,25 @@ const Table = class extends React.Component {
       >
         Tweet your results
       </a>
-    )
+    );
   }
   renderFlag(item) {
-    if (!item.icon) return ''
-    return <img src={item.icon} className="icon" itemType="image/svg" />
+    if (!item.icon) return "";
+    return <img src={item.icon} className="icon" itemType="image/svg" />;
   }
   renderFlag2(item) {
-    if (!item.icon2) return ''
-    return <img src={item.icon2} className="icon" itemType="image/svg" />
+    if (!item.icon2) return "";
+    return <img src={item.icon2} className="icon" itemType="image/svg" />;
   }
   renderRow(item) {
     const rowStyle = {
       backgroundImage:
-        'linear-gradient(to right, #e9ecef ' +
+        "linear-gradient(to right, #e9ecef " +
         Math.round(item.percent) +
-        '%, #ffffff ' +
+        "%, #ffffff " +
         Math.round(item.percent) +
-        '%)'
-    }
+        "%)",
+    };
 
     return (
       <tr key={item.name} style={rowStyle}>
@@ -96,7 +96,7 @@ const Table = class extends React.Component {
           </Sparklines>
         </td>
       </tr>
-    )
+    );
   }
 
   renderError(item) {
@@ -111,10 +111,15 @@ const Table = class extends React.Component {
           <span className="badge badge-danger">NO RESPONSE</span>
         </td>
         <td className="no-mobile">
-          <a href="javascript:void(0);" onClick={speedtest.retry.bind(null, item.domain)}>Retry</a>
+          <a
+            href="javascript:void(0);"
+            onClick={speedtest.retry.bind(null, item.domain)}
+          >
+            Retry
+          </a>
         </td>
       </tr>
-    )
+    );
   }
 
   render() {
@@ -135,27 +140,31 @@ const Table = class extends React.Component {
           Share your results with other people on twitter {this.renderButton()}
         </p>
         <p>
-          Compare your speed with others by watching the{' '}
+          Compare your speed with others by watching the{" "}
           <a href="https://twitter.com/search?q=%23AzureSpeedTest&src=hash&mode=realtime">
             #GitHubAzureDevOpsSpeedTest
-          </a>{' '}
+          </a>{" "}
           hashtag.
         </p>
         <p>
-          <a href="https://github.com/Azure4DevOps/GithubAzureDevOpsSpeedTest">Fork</a> on
-          GitHub.
+          <a href="https://github.com/Azure4DevOps/GithubAzureDevOpsSpeedTest">
+            Fork
+          </a>{" "}
+          on GitHub.
         </p>
         <p>
-          <a href="https://github.com/richorama/AzureSpeedTest2">Forked from and inspired from</a> on
-          GitHub.
+          <a href="https://github.com/richorama/AzureSpeedTest2">
+            Forked from and inspired from
+          </a>{" "}
+          on GitHub.
         </p>
         <p>
           Created by <a href="https://www.twitter.com/jnowwwak/">@jnowwwak</a>
         </p>
         <p>
-          The{' '}
-          <a href="https://azure.microsoft.com/en-us/regions/">Azure Website</a>{' '}
-          has a map with all data centers, and a{' '}
+          The{" "}
+          <a href="https://azure.microsoft.com/en-us/regions/">Azure Website</a>{" "}
+          has a map with all data centers, and a{" "}
           <a href="https://azure.microsoft.com/en-us/regions/services/">
             feature matrix
           </a>
@@ -164,12 +173,12 @@ const Table = class extends React.Component {
         <p>
           <small>
             The latency times are indicative only, and do not represent the
-            maxium performance, achievable from GitHub and Azure DevOps. Use this website
-            purely as a tool to gauge which Azure Data Center could be the best
-            for your location.
+            maxium performance, achievable from GitHub and Azure DevOps. Use
+            this website purely as a tool to gauge which Azure Data Center could
+            be the best for your location.
           </small>
         </p>
       </div>
-    )
+    );
   }
-}
+};

@@ -1,70 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Github Azure DevOps SpeedTest - Measure the latenecy to your nearest Microsoft Azure Data Center">
-    <meta name="author" content="Janusz Nowak">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Github Azure DevOps SpeedTest - Measure the latenecy to your nearest Microsoft Azure Data Center"
+    />
+    <meta name="author" content="Janusz Nowak" />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <title>Github Azure DevOps SpeedTest</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <style>
-        .container {
-            /*width: 970px;*/
-        }
+      .container {
+        /*width: 970px;*/
+      }
 
-        .icon {
-            width: 25px;
-            margin-right: 8px;
-        }
+      .icon {
+        width: 25px;
+        margin-right: 8px;
+      }
 
-        .results-table {
-            margin-bottom: 75px;
-        }
+      .results-table {
+        margin-bottom: 75px;
+      }
 
-        tr {
-            display: flex;
-            width: 100%;
-        }
+      tr {
+        display: flex;
+        width: 100%;
+      }
 
-        td,
-        th {
-            flex: 1;
-        }
+      td,
+      th {
+        flex: 1;
+      }
 
-        svg {
-            width: 200px;
-            height: 100%;
+      svg {
+        width: 200px;
+        height: 100%;
+      }
 
+      @media screen and (max-width: 770px) {
+        .no-mobile {
+          display: none;
         }
-
-        @media screen and (max-width:770px) {
-            .no-mobile {
-                display: none;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-4">Github Azure DevOps SpeedTest</h1>
-            <p class="lead">Measures the network latency between your browser and GitHub and each of the Azure DevOps region.</p>
-        </div>
+      <div class="container">
+        <h1 class="display-4">Github Azure DevOps SpeedTest</h1>
+        <p class="lead">
+          Measures the network latency between your browser and GitHub and each
+          of the Azure DevOps region.
+        </p>
+      </div>
     </div>
     <div class="container">
-        <div id="content">
-            Starting...
-        </div>
+      <div id="content">Starting...</div>
     </div>
 
-    <noscript>You need to enabled JavaScript for this web application to work.</noscript>
+    <noscript
+      >You need to enabled JavaScript for this web application to
+      work.</noscript
+    >
 
     <script src="index.min.js"></script>
-</body>
-
+  </body>
 </html>
