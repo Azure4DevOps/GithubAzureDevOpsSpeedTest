@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Dockerfile:
-    - uses: pre-commit/pre-commit@v3.8.0
+    - uses: pre-commit/pre-commit@v4.0.1
