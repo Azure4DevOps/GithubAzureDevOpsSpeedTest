@@ -4,5 +4,11 @@
             "path": "."
         }
     ],
-    "settings": {}
+    "settings": {
+        "chat.tools.terminal.autoApprove": {
+            "npm install": true,
+            "git checkout": true,
+            "git add": true
+        }
+    }
 }
