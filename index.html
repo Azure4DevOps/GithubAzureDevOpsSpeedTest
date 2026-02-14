@@ -20,6 +20,83 @@
   <title>Github Azure DevOps SpeedTest</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #212529;
+      --jumbotron-bg: #e9ecef;
+      --table-bg: #ffffff;
+      --table-stripe: #f8f9fa;
+      --border-color: #dee2e6;
+    }
+
+    body.dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #e9ecef;
+      --jumbotron-bg: #2d2d2d;
+      --table-bg: #2d2d2d;
+      --table-stripe: #3d3d3d;
+      --border-color: #454545;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .jumbotron {
+      background-color: var(--jumbotron-bg);
+      color: var(--text-color);
+    }
+
+    .table {
+      background-color: var(--table-bg);
+      color: var(--text-color);
+    }
+
+    .table tbody tr:hover {
+      background-color: var(--table-stripe);
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: var(--jumbotron-bg);
+      color: var(--text-color);
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      transform: scale(1.05);
+    }
+
+    .export-buttons {
+      margin: 20px 0;
+    }
+
+    .export-buttons button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      border-color: #ffc107;
+      color: #212529;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+      border-color: #d39e00;
+    }
+
     .container {
       /*width: 970px;*/
     }
@@ -51,6 +128,13 @@
     @media screen and (max-width: 770px) {
       .no-mobile {
         display: none;
+      }
+
+      .dark-mode-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
       }
     }
   </style>

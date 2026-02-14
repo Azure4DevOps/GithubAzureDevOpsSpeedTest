@@ -11,12 +11,21 @@ speedtest.on(history.record);
 
 speedtest.on(() => {
   const scrollPosition = window.scrollY;
-  render(<Table history={history.read()} blockList={globalBlockList} />);
+  render(<Table history={history.read()} blockList={globalBlockList} isPaused={globalIsPaused} />);
   window.scrollY = scrollPosition;
 });
 
 let globalBlockList = [];
+let globalIsPaused = false;
+
 speedtest.onBlocklistUpdate((blockList) => (globalBlockList = blockList));
+
+speedtest.onStatusChange((status) => {
+  globalIsPaused = status.paused;
+  const scrollPosition = window.scrollY;
+  render(<Table history={history.read()} blockList={globalBlockList} isPaused={globalIsPaused} />);
+  window.scrollY = scrollPosition;
+});
 
 function render(jsx) {
   ReactDom.render(jsx, document.getElementById("content"));
@@ -25,12 +34,120 @@ function render(jsx) {
 const Table = class extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      darkMode: localStorage.getItem('darkMode') === 'true',
+      isPaused: props.isPaused || false
+    };
     this.renderButton = this.renderButton.bind(this);
     this.renderFlag = this.renderFlag.bind(this);
     this.renderFlag2 = this.renderFlag2.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.renderError = this.renderError.bind(this);
+    this.toggleDarkMode = this.toggleDarkMode.bind(this);
+    this.exportToCSV = this.exportToCSV.bind(this);
+    this.exportToJSON = this.exportToJSON.bind(this);
+    this.togglePauseResume = this.togglePauseResume.bind(this);
   }
+
+  componentDidMount() {
+    // Apply dark mode on mount
+    if (this.state.darkMode) {
+      document.body.classList.add('dark-mode');
+    }
+    // Save history to localStorage
+    this.saveHistoryToLocalStorage();
+  }
+
+  componentDidUpdate(prevProps) {
+    // Save history to localStorage on updates
+    this.saveHistoryToLocalStorage();
+
+    // Update paused state if prop changed
+    if (prevProps.isPaused !== this.props.isPaused) {
+      this.setState({ isPaused: this.props.isPaused });
+    }
+  }
+
+  saveHistoryToLocalStorage() {
+    try {
+      const historyData = {
+        timestamp: new Date().toISOString(),
+        results: this.props.history.slice(0, 20) // Save last 20 results
+      };
+      localStorage.setItem('speedTestHistory', JSON.stringify(historyData));
+    } catch (e) {
+      console.error('Failed to save to localStorage', e);
+    }
+  }
+
+  toggleDarkMode() {
+    const newDarkMode = !this.state.darkMode;
+    this.setState({ darkMode: newDarkMode });
+    localStorage.setItem('darkMode', newDarkMode);
+
+    if (newDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }
+
+  exportToCSV() {
+    const headers = ['Data Center', 'Average Latency (ms)', 'Min', 'Max'];
+    const rows = this.props.history.map(item => [
+      item.name,
+      Math.round(item.average),
+      item.values && item.values.length > 0 ? Math.min(...item.values) : 'N/A',
+      item.values && item.values.length > 0 ? Math.max(...item.values) : 'N/A'
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `azure-devops-speed-test-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  exportToJSON() {
+    const data = {
+      timestamp: new Date().toISOString(),
+      results: this.props.history.map(item => ({
+        name: item.name,
+        domain: item.domain,
+        average: Math.round(item.average),
+        values: item.values || [],
+        icon: item.icon,
+        icon2: item.icon2
+      }))
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `azure-devops-speed-test-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  togglePauseResume() {
+    const newPausedState = !this.state.isPaused;
+    this.setState({ isPaused: newPausedState });
+
+    if (newPausedState) {
+      speedtest.pause();
+    } else {
+      speedtest.resume();
+    }
+  }
+
   renderButton() {
     let item = this.props.history[0];
 
@@ -125,6 +242,25 @@ const Table = class extends React.Component {
   render() {
     return (
       <div>
+        <button className="dark-mode-toggle" onClick={this.toggleDarkMode}>
+          {this.state.darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+
+        <div className="export-buttons">
+          <button
+            className={`btn ${this.state.isPaused ? 'btn-success' : 'btn-warning'}`}
+            onClick={this.togglePauseResume}
+          >
+            {this.state.isPaused ? '▶️ Resume Testing' : '⏸️ Pause Testing'}
+          </button>
+          <button className="btn btn-success" onClick={this.exportToCSV}>
+            📊 Export to CSV
+          </button>
+          <button className="btn btn-info" onClick={this.exportToJSON}>
+            📄 Export to JSON
+          </button>
+        </div>
+
         <table className="table results-table">
           <thead>
             <tr>
